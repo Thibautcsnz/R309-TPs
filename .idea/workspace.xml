@@ -6,13 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="06/11/2023 17:56">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TPs Exceptions/TP2/exercice2-fichier.py" beforeDir="false" afterPath="$PROJECT_DIR$/TPs Exceptions/TP2/exercice2-fichier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TPs Exceptions/TP2/maintp2.py" beforeDir="false" afterPath="$PROJECT_DIR$/TPs Exceptions/TP2/maintp2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,8 +44,29 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.maintp2">
-    <configuration name="exercice2-fichier" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.client">
+    <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="R309-Tps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP socket" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP socket/client.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="exercice2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -52,7 +78,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP2/exercice2-fichier.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP2\exercice2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -105,6 +131,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.client" />
         <item itemvalue="Python.maintp2" />
         <item itemvalue="Python.exercice2-fichier" />
         <item itemvalue="Python.main" />
@@ -134,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699290068079</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="06/11/2023 17:56">
+      <created>1699344760928</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699344760928</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
