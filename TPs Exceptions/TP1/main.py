@@ -9,7 +9,7 @@ if __name__ == '__main__':
         if y < 0:
             print("Y doit être positif")
         elif y ==0:
-            print("Y ne peut pas être inférieur à 0")
+            print("Y ne peut pas être égale à 0")
     except ValueError:
         print("Le nombre doit être un nombre entier")
     else:
