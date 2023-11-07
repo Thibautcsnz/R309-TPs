@@ -1,11 +1,10 @@
 import socket
-from serveur.py import server_program
 
 def client_program():
     host = socket.gethostname()
     port = 6500
     client_socket = socket.socket()
-    client_socket.connect(("192.168.71.40", 6500))
+    client_socket.connect(("127.0.0.1", 6500))
     message = input(" -> ")
     while message.lower().strip() != 'bye':
         client_socket.send(message.encode())
