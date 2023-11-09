@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="07/11/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice1/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice1/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice1/serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice1/serveur.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/serveur.py" afterDir="false" />
     </list>
@@ -51,27 +53,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.client (2)">
-    <configuration name="client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="R309-Tps" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP socket/Exercice2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP socket/Exercice2/client.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="client (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,11 +82,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP socket" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice1" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1\client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice1/client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -114,7 +95,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="serveur (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="exercice2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -122,11 +103,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP socket/Exercice2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP2" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP socket/Exercice2/serveur.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP2/exercice2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,13 +137,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="serveur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="R309-Tps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice1" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice1/serveur.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.client (2)" />
         <item itemvalue="Python.serveur (2)" />
-        <item itemvalue="Python.client (1)" />
-        <item itemvalue="Python.serveur (1)" />
         <item itemvalue="Python.client" />
+        <item itemvalue="Python.serveur" />
+        <item itemvalue="Python.exercice2" />
       </list>
     </recent_temporary>
   </component>
@@ -238,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699353978876</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="07/11/2023">
+      <created>1699524016615</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699524016615</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

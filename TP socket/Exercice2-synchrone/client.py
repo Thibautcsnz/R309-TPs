@@ -5,11 +5,11 @@ def client_program():
     client_socket = socket.socket()
     client_socket.connect(("127.0.0.1", 6500))
     while True:
-        message = input(" -> ")
+        message = input("Client dit : ")
         client_socket.send(message.encode())
         data = client_socket.recv(1024).decode()
-        print('Received from server: ' + data)
-        if data.lower().strip() == 'arrêt' or data.lower().strip() == 'bye':
+        print('Réponse du serveur : ' + data)
+        if data.lower().strip() == 'bye':
             break
     client_socket.close()
 
