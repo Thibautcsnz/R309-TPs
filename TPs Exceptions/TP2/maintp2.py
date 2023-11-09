@@ -1,4 +1,5 @@
 from exercice2 import *
+#Fichier maintp2 qui est associé à l'Exercice2 des Exceptions de Fichiers
 if __name__ == '__main__':
     try:
         f = "toto.txt"

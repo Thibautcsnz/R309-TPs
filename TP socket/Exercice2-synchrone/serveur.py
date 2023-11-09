@@ -12,8 +12,15 @@ def server_program():
     while True:
         data = conn.recv(1024).decode()
         print("from connected user: " + str(data))
-        data = input(' -> ')
-        conn.send(data.encode())
+        if data == 'bye':
+            conn.send("Arrêt du client".encode())
+        elif data == 'arret':
+            conn.send("Arrêt du client et du serveur".encode())
+            break
+        else:
+            message = input(' -> ')
+            conn.send(message.encode())
     conn.close()
+
 if __name__ == '__main__':
     server_program()

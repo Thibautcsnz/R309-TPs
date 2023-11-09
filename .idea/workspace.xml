@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="07/11/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.serveur (2)">
+  <component name="RunManager" selected="Python.client (2)">
     <configuration name="client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -229,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699353317634</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="07/11/2023">
+      <created>1699353978876</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699353978876</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

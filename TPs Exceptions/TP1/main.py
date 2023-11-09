@@ -1,5 +1,5 @@
 from exercice1 import divEntier
-
+#Main qui est associé à l'Exercice 1 des Exceptions (fonction divEntier)
 if __name__ == '__main__':
     try:
         x = int(input("x : "))
