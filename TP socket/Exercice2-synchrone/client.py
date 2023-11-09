@@ -9,9 +9,9 @@ def client_program():
         client_socket.send(message.encode())
         data = client_socket.recv(1024).decode()
         print('Réponse du serveur : ' + data)
-        if data.lower().strip() == 'bye':
+        if data.lower().strip() == 'arret' or data.lower().strip() == 'bye':
+            client_socket.close()
             break
-    client_socket.close()
 
 if __name__ == '__main__':
     client_program()
