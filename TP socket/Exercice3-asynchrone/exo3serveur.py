@@ -123,7 +123,7 @@ def start_client():
     receive_thread.start()
     send_thread.start()
 
-    # Attendez la fin des threads avant de fermer le socket client
+    # Attendre la fin des threads avant de fermer le socket client
     receive_thread.join()
     send_thread.join()
 
@@ -131,3 +131,24 @@ def start_client():
 
 if __name__ == "__main__":
     start_client()
+
+"""
+def reception(conn):
+    msg=""
+    while msg!="bye" and msg!="arret":
+    msg=conn.recv(...).decode()
+    print(msg)
+    
+if __name__='__main__':
+    socket
+    listen
+    envoi=""
+    while envoi!= "arret":
+        conn, addr=accept()
+        thread (voi cours)(reception, args=[conn])
+        envoi=""
+        while envoi!="bye" and envoi!="arret":
+            envoi = input() #bye
+            send
+        conn.close()
+"""
