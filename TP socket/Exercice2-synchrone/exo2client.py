@@ -4,7 +4,7 @@ import socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Adresse IP et port du serveur auquel se connecter
-server_address = ('127.0.0.1', 6500)
+server_address = ('127.0.0.1', 8000)
 
 try:
     # Tentative de connexion au serveur

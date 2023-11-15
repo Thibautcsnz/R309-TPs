@@ -4,7 +4,7 @@ import socket
 try:
     reply = 'active'
     server_socket = socket.socket()
-    server_socket.bind(('0.0.0.0', 6500))
+    server_socket.bind(('127.0.0.1', 6500))
     server_socket.listen(1)
     conn, address = server_socket.accept()
     message = conn.recv(1024).decode()

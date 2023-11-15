@@ -45,7 +45,7 @@ def start_server():
 
     # Liez le socket à une adresse et un port
     host = '127.0.0.1'  # Adresse IP du serveur
-    port = 6500  # Port à utiliser
+    port = 8000  # Port à utiliser
 
     try:
         server_socket.bind((host, port))

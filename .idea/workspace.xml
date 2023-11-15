@@ -7,8 +7,11 @@
     <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="10/11/2023">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TP socket/Exercice1/exo1serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice1/exo1serveur.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2client.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2client2.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2client2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2serveur.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP socket/Exercice3-asynchrone/exo3client.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice3-asynchrone/exo3client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TP socket/Exercice3-asynchrone/exo3serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/TP socket/Exercice3-asynchrone/exo3serveur.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TPs Exceptions/TP2/toto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TPs Exceptions/TP2/toto.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +54,28 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.exo3client">
+  <component name="RunManager" selected="Python.exercice1">
+    <configuration name="exercice1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="R309-Tps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP Interfaces-graphiques" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP Interfaces-graphiques/exercice1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="exo1client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,34 +160,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="maintp2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="R309-Tps" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP2" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP2/maintp2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.exo3client" />
-        <item itemvalue="Python.exo3serveur" />
+        <item itemvalue="Python.exercice1" />
         <item itemvalue="Python.exo1client" />
         <item itemvalue="Python.exo1serveur" />
-        <item itemvalue="Python.maintp2" />
+        <item itemvalue="Python.exo3client" />
+        <item itemvalue="Python.exo3serveur" />
       </list>
     </recent_temporary>
   </component>
@@ -288,7 +291,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699613377935</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="10/11/2023">
+      <created>1700041724566</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1700041724566</updated>
+    </task>
+    <task id="LOCAL-00018" summary="10/11/2023">
+      <created>1700041751920</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1700041751920</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
