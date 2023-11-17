@@ -1,10 +1,11 @@
 # Exercice2 des Interfaces graphiques
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QComboBox, QVBoxLayout, QHBoxLayout, QPushButton, QMessageBox
 import sys
-# On créer la classe TemperatureConverter
+
 class TemperatureConverter(QWidget):
     def __init__(self):
         super().__init__()
+
         self.init_ui()
 
     def init_ui(self):
@@ -24,6 +25,9 @@ class TemperatureConverter(QWidget):
         self.convert_button = QPushButton("Convertir")
         self.convert_button.clicked.connect(self.on_convert_button_click)
 
+        self.help_button = QPushButton("?")
+        self.help_button.clicked.connect(self.show_help_message)
+
         # Mise en page
         input_layout = QHBoxLayout()
         input_layout.addWidget(self.label_instruction)
@@ -37,6 +41,7 @@ class TemperatureConverter(QWidget):
 
         button_layout = QHBoxLayout()
         button_layout.addWidget(self.convert_button)
+        button_layout.addWidget(self.help_button)
 
         main_layout = QVBoxLayout()
         main_layout.addLayout(input_layout)
@@ -69,10 +74,14 @@ class TemperatureConverter(QWidget):
 
     def show_error(self, message):
         msg_box = QMessageBox()
-        msg_box.setIcon(QMessageBox.Icon.Critical)
+        msg_box.setIcon(QMessageBox.Critical)
         msg_box.setWindowTitle("Erreur")
         msg_box.setText(message)
         msg_box.exec()
+
+    def show_help_message(self):
+        help_msg = "Permet de convertir un nombre de Kelvin à Celsius ou inversement."
+        QMessageBox.information(self, "Aide", help_msg)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
