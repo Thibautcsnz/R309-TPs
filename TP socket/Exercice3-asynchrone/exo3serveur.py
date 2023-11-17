@@ -43,3 +43,30 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+"""
+connecté = False
+def réception(conn):
+    msg=""
+    while msg!="by" and message !="arret":
+        msg = conn.recv(1024).decode()
+        print(msg)
+    conn.send(msg)
+
+if __name__ == '__main__'
+    server_socket = ________
+    server_socket.listen(1)
+    msg=""
+    while msg!="arret"
+        conn, addr=server_socket.accept()
+        t1 = Threading(target="reception")
+                            args=[conn]
+        t1.start()
+        msg=""
+        while msg!="arret" and msg!="bye"
+            and connecte:
+                msg=input("")
+                conn.send(msg)
+        t1.join
+        conn.close()
+"""
