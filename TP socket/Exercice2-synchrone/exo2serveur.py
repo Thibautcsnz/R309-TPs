@@ -1,9 +1,9 @@
 import socket
-#Exercice2 du TP sur les Sockets, le serveur doit gérer un client de manière synchrone.
+# Exercice2 du TP sur les Sockets, le serveur doit gérer un client de manière synchrone.
+# Serveur relatif à l'exercice2 des sockets
 
 # Variable de contrôle pour indiquer si le serveur doit s'arrêter
 server_stopped = False
-
 def handle_client(client_socket):
     global server_stopped  # Utilisation de la variable globale
 
@@ -15,14 +15,14 @@ def handle_client(client_socket):
 
             if client_data == "arret":
                 print("Le serveur a été arrêté par le client")
-                client_socket.send("arret".encode('utf-8'))  # Envoyer un signal d'arrêt au client
-                server_stopped = True  # Mettez à jour la variable de contrôle
+                client_socket.send("arret".encode('utf-8'))  # Envoye d'un signal d'arrêt au client
+                server_stopped = True
                 break
             elif client_data == "bye":
                 print("Le client s'est déconnecté")
                 break
 
-            # Envoyez une réponse au client
+            # Envoye d'une réponse au client
             try:
                 server_response = input("Réponse du serveur : ")
             except KeyboardInterrupt:
@@ -34,16 +34,16 @@ def handle_client(client_socket):
     except ConnectionResetError:
         print("La connexion a été fermée par l'hôte distant")
 
-    # Fermez le socket client
+    # Fermeture du socket client
     client_socket.close()
 
 def start_server():
-    global server_stopped  # Utilisation de la variable globale
+    global server_stopped
 
-    # Créez un socket serveur
+    # Création du socket serveur
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # Liez le socket à une adresse et un port
+    # Configuration du socket : Adresse IP | Port
     host = '127.0.0.1'  # Adresse IP du serveur
     port = 8000  # Port à utiliser
 
@@ -61,7 +61,7 @@ def start_server():
     print(f"Le serveur écoute sur {host}:{port}")
 
     while not server_stopped:  # Utilisez la variable de contrôle dans la boucle principale
-        # Attendez qu'un client se connecte
+        # Attendre qu'un client se connecte
         print("En attente d'un client...")
         client_socket, client_address = server_socket.accept()
         print(f"Connexion entrante de {client_address}")
@@ -69,7 +69,7 @@ def start_server():
         # Gérez le client sans utiliser de thread
         handle_client(client_socket)
 
-    # Fermez le socket serveur après l'arrêt
+    # Fermeture du socket serveur après l'arrêt
     server_socket.close()
 
 if __name__ == "__main__":
