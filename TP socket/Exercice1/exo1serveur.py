@@ -1,7 +1,7 @@
 import socket
 # Exercice1 du TP sur les sockets, celui-ci contient un client et un serveur
 # Le client et le serveur gèrent, tout deux, des exceptions.
-# Serveur de l'exercice1 des Exceptions
+# Serveur de l'exercice1 des sockets
 try:
     reply = 'active'
     server_socket = socket.socket()

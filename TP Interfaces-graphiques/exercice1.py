@@ -1,3 +1,4 @@
+# Exercice1 des interfaces graphiques
 import sys
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton
 
