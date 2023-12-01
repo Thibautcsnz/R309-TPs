@@ -16,7 +16,7 @@ try:
         client_socket.send(client_message.encode('utf-8'))
         # Messages bye et arret
         if client_message == "arret":
-            print("Le client a été arrêté par le client")
+            print("Le serveur a été arrêté par le client")
             break
         elif client_message == "bye":
             # Arrêtez du client lorsque celui-ci envoie "bye"

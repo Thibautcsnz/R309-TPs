@@ -1,4 +1,5 @@
 import socket
+import time
 # Exercice1 du TP sur les sockets, celui-ci contient un client et un serveur
 # Le client et le serveur gèrent, tout deux, des exceptions.
 # Serveur de l'exercice1 des sockets
@@ -17,5 +18,6 @@ except socket.error as err:
 except Exception as err:
     print(f"Une erreur est survenue: {err}")
 finally:
+    time.sleep(10)
     conn.close()
     server_socket.close()
