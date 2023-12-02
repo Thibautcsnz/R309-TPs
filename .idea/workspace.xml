@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="17/11/2023" />
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="01/12/2023">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,12 +44,13 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\thiba\Documents\R309-Tps\TEST-R309-COSENZA-Thibaut" />
       <recent name="C:\Users\thiba\Documents\R309-Tps" />
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="exo1client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Interface Graphique (partie5)">
+    <configuration name="Interface Graphique Partie4-Bouton-Quitter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -55,11 +58,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice1" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice1/exo1client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique Partie4-Bouton-Quitter.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -68,7 +71,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="exo1serveur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Interface Graphique Partie4-Thread" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -76,11 +79,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice1" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice1/exo1serveur.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique Partie4-Thread.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -89,7 +92,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="exo2client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Interface Graphique (partie5)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -97,11 +100,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice2-synchrone" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique (partie5).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -110,7 +113,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="exo2serveur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Interface Graphique partie 3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -118,11 +121,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TP socket/Exercice2-synchrone" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TP socket/Exercice2-synchrone/exo2serveur.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique partie 3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -131,7 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="maintp2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -139,11 +142,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TPs Exceptions/TP2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TPs Exceptions/TP2/maintp2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -154,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.exo2client" />
-        <item itemvalue="Python.exo2serveur" />
-        <item itemvalue="Python.exo1client" />
-        <item itemvalue="Python.exo1serveur" />
-        <item itemvalue="Python.maintp2" />
+        <item itemvalue="Python.Interface Graphique (partie5)" />
+        <item itemvalue="Python.Interface Graphique Partie4-Bouton-Quitter" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.Interface Graphique partie 3" />
+        <item itemvalue="Python.Interface Graphique Partie4-Thread" />
       </list>
     </recent_temporary>
   </component>
@@ -339,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701461439742</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="01/12/2023">
+      <created>1701461993445</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1701461993445</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,6 +370,7 @@
     <MESSAGE value="10/11/2023" />
     <MESSAGE value="15/11/2023" />
     <MESSAGE value="17/11/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="17/11/2023" />
+    <MESSAGE value="01/12/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="01/12/2023" />
   </component>
 </project>
