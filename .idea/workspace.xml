@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="01/12/2023">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="02/12/2023 : Examen R309">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +49,8 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Interface Graphique (partie5)">
-    <configuration name="Interface Graphique Partie4-Bouton-Quitter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.clientest (1)">
+    <configuration name="clientest (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -58,11 +58,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique Partie4-Bouton-Quitter.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/clientest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,7 +71,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Interface Graphique Partie4-Thread" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="clientest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -79,11 +79,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique Partie4-Thread.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\SAE3.02\clientest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -92,7 +92,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Interface Graphique (partie5)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="clientest2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -100,11 +100,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique (partie5).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/clientest2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,7 +113,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Interface Graphique partie 3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="serveurrrrrrtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,11 +121,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/Interface Graphique partie 3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/serveurrrrrrtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,7 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="serveurtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -142,11 +142,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TEST-R309-COSENZA-Thibaut/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/serveurtest.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,11 +157,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Interface Graphique (partie5)" />
-        <item itemvalue="Python.Interface Graphique Partie4-Bouton-Quitter" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.Interface Graphique partie 3" />
-        <item itemvalue="Python.Interface Graphique Partie4-Thread" />
+        <item itemvalue="Python.clientest (1)" />
+        <item itemvalue="Python.serveurtest" />
+        <item itemvalue="Python.serveurrrrrrtest" />
+        <item itemvalue="Python.clientest2" />
+        <item itemvalue="Python.clientest" />
       </list>
     </recent_temporary>
   </component>
@@ -349,7 +349,28 @@
       <option name="project" value="LOCAL" />
       <updated>1701461993445</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="02/12/2023 : Examen R309">
+      <created>1701514230531</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701514230531</updated>
+    </task>
+    <task id="LOCAL-00027" summary="02/12/2023 : Examen R309">
+      <created>1701514269214</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701514269214</updated>
+    </task>
+    <task id="LOCAL-00028" summary="02/12/2023 : Examen R309">
+      <created>1701514295139</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1701514295139</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -371,6 +392,7 @@
     <MESSAGE value="15/11/2023" />
     <MESSAGE value="17/11/2023" />
     <MESSAGE value="01/12/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="01/12/2023" />
+    <MESSAGE value="02/12/2023 : Examen R309" />
+    <option name="LAST_COMMIT_MESSAGE" value="02/12/2023 : Examen R309" />
   </component>
 </project>
