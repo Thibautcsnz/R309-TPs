@@ -4,7 +4,7 @@ import threading
 import time
 import queue
 from PyQt6.QtGui import QPalette, QColor, QLinearGradient
-from PyQt6.QtCore import QTimer, QObject, pyqtSignal, QThread, Qt
+from PyQt6.QtCore import QTimer, QObject, pyqtSignal, QThread
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QListWidget
 
 class UserSignal(QObject):
@@ -58,9 +58,16 @@ class UserManager:
         self.broadcast_message("Server", kick_message)
         self.kicked_users[username] = time.time() + self.parse_duration(duration)
 
+        # Utilisez un dictionnaire pour stocker les informations sur l'utilisateur "kicked"
+        self.kicked_users[username] = time.time() + self.parse_duration(duration)
+        self.user_signal.user_updated.emit()
+
+        # Lancer le minuteur dans un thread séparé pour ne pas bloquer le thread principal
         threading.Thread(target=self.kick_timer, args=(username,)).start()
 
+        # Marquer l'utilisateur comme "kicked" pour la durée spécifiée
         self.kicked_users.add(username)
+        self.user_signal.user_updated.emit()
         time.sleep(self.parse_duration(duration))
         self.kicked_users.remove(username)
         self.user_signal.user_updated.emit()
@@ -70,6 +77,9 @@ class UserManager:
         if username in self.kicked_users:
             del self.kicked_users[username]
             self.user_signal.user_updated.emit()
+
+        # Lancer le minuteur dans un thread séparé pour ne pas bloquer le thread principal
+        threading.Thread(target=kick_timer).start()
 
     def parse_duration(self, duration):
         unit = duration[-1].lower()
@@ -91,6 +101,7 @@ class UserManager:
         self.broadcast_message("Server", ban_message)
         self.banned_users[username] = True
 
+        # Marquer l'utilisateur comme "banned"
         self.banned_users.add(username)
         self.user_signal.user_updated.emit()
 
@@ -98,8 +109,13 @@ class UserManager:
         return username in self.banned_users
 
     def kill_server(self):
+        # Envoyez un message d'arrêt à tous les clients
         self.broadcast_server_shutdown()
+
+        # Indiquer que l'arrêt du serveur a été demandé
         self.shutdown_requested = True
+
+        # Attendre que tous les threads clients se terminent avant de terminer le programme
         for client_thread in threading.enumerate():
             if isinstance(client_thread, ClientHandler):
                 client_thread.join()
@@ -126,19 +142,35 @@ class ServerThread(QThread):
                 while not self.user_manager.shutdown_requested:
                     client_socket, address = server_socket.accept()
                     username = client_socket.recv(1024).decode('utf-8')
-                    print(f"{username} connecté depuis {address}")
+                    print(f"{username} connected from {address}")
                     self.user_manager.add_user(username, address, client_socket)
 
+                    # Send the acknowledgment after adding the user
                     client_socket.send("ACK_USERNAME".encode())
 
                     if not self.user_manager.shutdown_requested:
+                        # Create an instance of ClientHandler
                         client_handler = ClientHandler(username, client_socket, self.user_manager)
-                        client_handler.start()
+
+                        # Move ClientHandler to a new QThread
+                        thread = QThread(self)
+                        client_handler.moveToThread(thread)
+
+                        # Connect signals
+                        client_handler.message_received.connect(self.handle_message_received)
+
+                        # Start the thread
+                        thread.started.connect(client_handler.handle_client_messages)
+                        thread.start()
 
             except Exception as e:
-                print(f"Erreur du serveur : {e}")
+                print(f"Server error: {e}")
             finally:
                 server_socket.close()
+
+        def handle_message_received(self, message):
+            # Handle the received message, e.g., print it to the console
+            print(f"Message received: {message}")
 
 class ServerGUI(QWidget):
     selected_user = None
@@ -149,6 +181,7 @@ class ServerGUI(QWidget):
 
         self.setWindowTitle("Administration")
         self.setGeometry(300, 300, 400, 200)
+        # Déclarez les boutons comme des attributs de classe
         self.kick_button = QPushButton("Kick Selected User", self)
         self.ban_button = QPushButton("Ban Selected User", self)
         self.kill_button = QPushButton("Kill Server", self)
@@ -158,6 +191,11 @@ class ServerGUI(QWidget):
     def init_ui(self):
         layout = QVBoxLayout()
 
+        # Connect the signal from the ClientHandler to the update_messages method
+        for user_data in self.user_manager.connected_users.values():
+            user_handler = user_data['handler']
+            user_handler.message_received.connect(self.update_messages)
+
         self.user_list = QListWidget(self)
         self.refresh_user_list()
 
@@ -165,6 +203,7 @@ class ServerGUI(QWidget):
         self.ban_button.setStyleSheet("background-color: #EC2D0B; color: white;")
         self.kill_button.setStyleSheet("background-color: #0BE9EC; color: white;")
 
+        # Connexion des boutons à leurs méthodes respectives
         self.kick_button.clicked.connect(self.kick_user)
         self.ban_button.clicked.connect(self.ban_user)
         self.kill_button.clicked.connect(self.kill_server)
@@ -176,16 +215,19 @@ class ServerGUI(QWidget):
 
         self.setLayout(layout)
 
+        # Connectez le signal itemClicked à une fonction pour enregistrer l'utilisateur sélectionné
         self.user_list.itemClicked.connect(self.select_user)
 
+        # Create a QTimer for refreshing the user list every second
         self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_ui)
-        self.timer.start(1000)
+        self.timer.timeout.connect(self.refresh_user_list)
+        self.timer.start(1000)  # Refresh every 1000 milliseconds (1 second)
 
-    def update_ui(self):
-        self.refresh_user_list()
+    def update_messages(self, message):
+        print(message)  # This is where you can update your UI with the received message
 
     def select_user(self, item):
+        # Enregistrez l'utilisateur sélectionné dans la variable de classe
         ServerGUI.selected_user = item.text()
 
     def refresh_user_list(self):
@@ -205,7 +247,7 @@ class ServerGUI(QWidget):
         selected_item = self.user_list.currentItem()
         if selected_item is not None:
             ServerGUI.selected_user = selected_item.text()
-            duration = "1h"
+            duration = "1h"  # Remplacez par la durée réelle que vous souhaitez définir
             self.user_manager.kick_user(ServerGUI.selected_user, duration)
             self.refresh_user_list()
         else:
@@ -217,9 +259,11 @@ class ServerGUI(QWidget):
 
     def kill_server(self):
         self.user_manager.kill_server()
+        # Add any additional cleanup or shutdown logic here
         sys.exit()
 
-class ClientHandler(threading.Thread):
+class ClientHandler(QObject):
+    message_received = pyqtSignal(str)
     def __init__(self, username, client_socket, user_manager):
         super().__init__()
         self.username = username
@@ -232,18 +276,25 @@ class ClientHandler(threading.Thread):
                 data = self.client_socket.recv(1024)
                 if not data:
                     break
+
                 message = data.decode('utf-8')
-                print(f"Reçu de {self.username}: {message}")
+                print(f"Received from {self.username}: {message}")
 
                 formatted_message = f"@{self.username}: {message}"
-                self.user_manager.broadcast_message(self.username, formatted_message)
+                print(f"Formatted message: {formatted_message}")
+
+                if self.client_socket.fileno() != -1:
+                    # Emit the signal to notify the main thread about the received message
+                    self.message_received.emit(formatted_message)
 
         except Exception as e:
-            print(f"Erreur lors de la gestion des messages du client {self.username}: {e}")
+            print(f"Error handling client messages for {self.username}: {e}")
         finally:
+            if self.client_socket.fileno() != -1:
+                self.client_socket.close()
+
             self.user_manager.remove_user(self.username)
-            print(f"{self.username} déconnecté.")
-            self.client_socket.close()
+            print(f"{self.username} disconnected.")
             self.user_manager.user_signal.user_updated.emit()
 
     def run(self):
@@ -252,6 +303,7 @@ class ClientHandler(threading.Thread):
             print(f"{self.username} connecté depuis {address}")
 
             while True:
+                # Vérifier si l'utilisateur est kické ou banni
                 if self.user_manager.is_kicked(self.username):
                     kick_message = "You have been kicked. Please try again later."
                     self.client_socket.send(kick_message.encode())
@@ -278,6 +330,7 @@ def main():
     user_signal = UserSignal()
     user_manager = UserManager(user_signal)
 
+    # Start the server thread
     server_thread = ServerThread(user_manager)
     server_thread.start()
 
@@ -288,4 +341,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

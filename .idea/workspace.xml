@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="02/12/2023 : Examen R309">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="18/12/2023 : SAE302">
+      <change afterPath="$PROJECT_DIR$/TP socket/Exercice3-asynchrone/exo3client2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/clientest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/clientest2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/serveurrrrrrtest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/serveurtest.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +54,8 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clientest (1)">
-    <configuration name="clientest (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Client (1)">
+    <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -62,7 +67,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/clientest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/Client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -71,7 +76,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="clientest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,7 +88,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\SAE3.02\clientest.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\SAE3.02\Client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -92,7 +97,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="clientest2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -104,7 +109,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/clientest2.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\SAE3.02\Client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,7 +118,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="serveurrrrrrtest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Serveur (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -125,7 +130,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/serveurrrrrrtest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/Serveur.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Serveur" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="R309-Tps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\thiba\Documents\R309-Tps\SAE3.02\Serveur.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -157,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.clientest (1)" />
+        <item itemvalue="Python.Client (1)" />
+        <item itemvalue="Python.Serveur (1)" />
+        <item itemvalue="Python.Client" />
+        <item itemvalue="Python.Serveur" />
         <item itemvalue="Python.serveurtest" />
-        <item itemvalue="Python.serveurrrrrrtest" />
-        <item itemvalue="Python.clientest2" />
-        <item itemvalue="Python.clientest" />
       </list>
     </recent_temporary>
   </component>
@@ -370,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701514295139</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="18/12/2023 : SAE302">
+      <created>1702932072521</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1702932072521</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -393,6 +426,7 @@
     <MESSAGE value="17/11/2023" />
     <MESSAGE value="01/12/2023" />
     <MESSAGE value="02/12/2023 : Examen R309" />
-    <option name="LAST_COMMIT_MESSAGE" value="02/12/2023 : Examen R309" />
+    <MESSAGE value="18/12/2023 : SAE302" />
+    <option name="LAST_COMMIT_MESSAGE" value="18/12/2023 : SAE302" />
   </component>
 </project>

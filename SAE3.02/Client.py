@@ -12,41 +12,17 @@ def get_gui_message():
     # You should implement this method according to your PyQt application
     pass
 
-class ClientHandler:
-    def __init__(self, host, port):
-        self.client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.client_socket.connect((host, port))
-
-    def send_message(self, message):
-        self.client_socket.send(message.encode('utf-8'))
-
-    def receive_messages(self):
-        while True:
-            data = self.client_socket.recv(1024)
-            if not data:
-                break
-            message = data.decode('utf-8')
-            print(message)
-
 class ClientThread(QThread):
     message_received = pyqtSignal(str)
 
-    def __init__(self, host, port, username, password, room, input_edit):
+    def __init__(self, host, port, username, password, room):
         super().__init__()
         self.host = host
         self.port = port
         self.client_socket = None
         self.username = username
         self.password = password
-        self.password = password
         self.room = room
-        self.input_edit = input_edit  # Initialisez le widget ici
-
-    def get_gui_message(self):
-        if self.parent and hasattr(self.parent, 'room_window') and self.parent.room_window:
-            return self.parent.room_window.message_edit.toPlainText()
-        else:
-            return ""
 
     def run(self):
         try:
@@ -85,20 +61,17 @@ class ClientThread(QThread):
         try:
             while True:
                 # Since this is a GUI application, get the message from the GUI
-                message = self.get_gui_message()  # Replace this with the correct method
-                print(f"Sending message to server: {message}")
+                message = yield from get_gui_message()  # Replace this with the correct method
                 if not message:
                     break
                 self.client_socket.send(message.encode())
         except Exception as e:
             print(f"Error sending user input: {e}")
 
-    def send_message(self, message_text, channel):
-        if self.input_edit is not None:
-            message_text = self.input_edit.text()
-            # Continuer avec le reste du code...
-        else:
-            print("Erreur: input_edit non défini.")
+    def send_message(self, message):
+        if self.client_socket:
+            self.client_socket.send(message.encode())
+            print(f"Sent message: {message}")
 
 class RoomWindow(QWidget):
     message_received = pyqtSignal(str)
@@ -371,7 +344,7 @@ class ChatClient(QMainWindow):
 
             # Comparer le mot de passe entré avec celui enregistré
             if entered_hashed_password == stored_password:
-                client_thread = ClientThread(self.host, self.port, username, "", self.room, self.input_edit)
+                client_thread = ClientThread(self.host, self.port, username, "", self.room)
                 client_thread.start()
                 self.set_client_thread(client_thread)
                 self.show_room_window(username)
@@ -397,7 +370,7 @@ class ChatClient(QMainWindow):
 
         # Mettre à jour le titre et envoyer un message pour le salon initial
         self.room_window.update_title(channel)
-        self.client_thread.send_message(f"@{username}: Rejoint le salon {channel}", channel)
+        self.client_thread.send_message(f"@{username}: Rejoint le salon {channel}")
 
     # Ajouter la méthode handle_room_change pour gérer les changements de salon
     def handle_room_change(self, index):
@@ -423,7 +396,6 @@ class ChatClient(QMainWindow):
 
     def set_client_thread(self, client_thread):
         self.client_thread = client_thread
-        self.client_thread.parent = self  # Définissez le parent du client_thread sur l'instance actuelle de ChatClient
 
 class HomePage(QWidget):
     registration_requested = pyqtSignal()
