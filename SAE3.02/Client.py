@@ -64,7 +64,7 @@ class ClientThread(QThread):
                 message = yield from get_gui_message()  # Replace this with the correct method
                 if not message:
                     break
-                self.client_socket.send(message.encode())
+                self.client_socket.send(full_message.encode())
         except Exception as e:
             print(f"Error sending user input: {e}")
 
@@ -75,6 +75,7 @@ class ClientThread(QThread):
 
 class RoomWindow(QWidget):
     message_received = pyqtSignal(str)
+    logout_requested = pyqtSignal()
 
     def __init__(self, username, client_thread, parent, user_manager):
         super().__init__()
@@ -113,6 +114,11 @@ class RoomWindow(QWidget):
         self.room_list.addItem('Marketing')
         layout.addWidget(self.room_list)
 
+        # Bouton de déconnexion
+        logout_button = QPushButton('Déconnexion', self)
+        layout.addWidget(logout_button)
+
+
         # Zone de texte pour envoyer le texte (ajustez la hauteur ici)
         self.message_edit = QTextEdit(self)
         self.message_edit.setFixedHeight(50)  # Ajustez la hauteur ici selon vos besoins
@@ -135,6 +141,13 @@ class RoomWindow(QWidget):
 
         # Connecter le signal currentIndexChanged à la méthode room_changed
         self.room_list.currentIndexChanged.connect(self.room_changed)
+
+        # Connectez le signal clicked du bouton de déconnexion à la méthode logout
+        logout_button.clicked.connect(self.logout)
+
+    def logout(self):
+        # Émettez le signal de déconnexion
+        self.logout_requested.emit()
 
     def room_changed(self, index):
         selected_room = self.room_list.currentText()
@@ -365,12 +378,22 @@ class ChatClient(QMainWindow):
         self.stacked_widget.setCurrentWidget(self.room_window)
         self.room_window.message_received.connect(self.send_message_to_server)
 
-        # Connecter le signal currentIndexChanged de room_list à handle_room_change
+        # Connectez le signal currentIndexChanged de room_list à handle_room_change
         self.room_window.room_list.currentIndexChanged.connect(self.handle_room_change)
+
+        # Connectez le signal logout_requested de RoomWindow à handle_logout_requested
+        self.room_window.logout_requested.connect(self.handle_logout_requested)
 
         # Mettre à jour le titre et envoyer un message pour le salon initial
         self.room_window.update_title(channel)
         self.client_thread.send_message(f"@{username}: Rejoint le salon {channel}")
+
+    def handle_logout_requested(self):
+        # Gérez la déconnexion ici
+        self.client_thread.send_message(f"@{self.room_window.username}: Quitte le salon")
+        self.client_thread.terminate()  # Terminez le thread client
+        self.client_thread.wait()  # Attendez que le thread client se termine
+        self.show_home_page()
 
     # Ajouter la méthode handle_room_change pour gérer les changements de salon
     def handle_room_change(self, index):
@@ -390,9 +413,14 @@ class ChatClient(QMainWindow):
         pass
 
     def send_message_to_server(self, message):
-        # Vous devrez implémenter la logique d'envoi de messages au serveur ici
-        # Pour l'instant, affichons simplement le message dans la console
-        print(f"Message envoyé au serveur : {message}")
+        try:
+            if self.client_thread:
+                self.client_thread.send_message(message)
+                print(f"Message envoyé au serveur : {message}")
+            else:
+                print("Erreur: Thread client non initialisé.")
+        except Exception as e:
+            print(f"Erreur lors de l'envoi du message au serveur : {e}")
 
     def set_client_thread(self, client_thread):
         self.client_thread = client_thread

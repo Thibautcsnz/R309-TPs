@@ -32,6 +32,14 @@ class UserManager:
 
         self.create_messages_table()
 
+    def broadcast_message(self, message, sender_username):
+        with self.lock:
+            for user_data in self.connected_users.values():
+                user_socket = user_data['socket']
+                target_username = self.get_username_from_socket(user_socket)
+                if target_username != sender_username and target_username not in self.kicked_users and target_username not in self.banned_users:
+                    user_socket.send(message.encode('utf-8'))
+
     def create_messages_table(self):
         # Créer la table des messages si elle n'existe pas déjà
         with self.db_connection.cursor() as cursor:
@@ -66,27 +74,11 @@ class UserManager:
             del self.message_queues[username]
             self.user_signal.user_updated.emit()
 
-    def broadcast_message(self, username, message):
-        with self.lock:
-            for user_data in self.connected_users.values():
-                user_socket = user_data['socket']
-                target_username = self.get_username_from_socket(user_socket)
-                if target_username not in self.kicked_users and target_username not in self.banned_users:
-                    user_socket.send(message.encode('utf-8'))
-
     def get_username_from_socket(self, client_socket):
         for username, data in self.connected_users.items():
             if data['socket'] == client_socket:
                 return username
         return None
-
-    def broadcast_server_shutdown(self):
-        shutdown_message = "Attention ! Arrêt du serveur !"
-        self.broadcast_message("Server", shutdown_message)
-        with self.lock:
-            for user_data in self.connected_users.values():
-                user_socket = user_data['socket']
-                user_socket.send(shutdown_message.encode('utf-8'))
 
     def kick_user(self, username, duration):
         kick_message = f"Kicked {username} for {duration}"
@@ -163,8 +155,16 @@ class ServerThread(QThread):
             super().__init__()
             self.user_manager = user_manager
 
+        def broadcast_server_shutdown(self):
+            shutdown_message = "Attention ! Arrêt du serveur !"
+            self.broadcast_message("Server", shutdown_message)
+            with self.lock:
+                for user_data in self.connected_users.values():
+                    user_socket = user_data['socket']
+                    user_socket.send(shutdown_message.encode('utf-8'))
+
         def run(self):
-            host = "127.0.0.1"
+            host = "0.0.0.0"
             port = 9000
 
             server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -208,6 +208,9 @@ class ServerThread(QThread):
             print(f"Message received: {message}")
             username, _, user_message = message.partition(':')
             self.user_manager.add_message_to_db(username.strip(), "", user_message.strip())
+
+            # Broadcast the message to all connected clients
+            self.user_manager.broadcast_message(message, sender_username=username)
 
 class ServerGUI(QWidget):
     selected_user = None
@@ -307,8 +310,17 @@ class ClientHandler(QObject):
         self.client_socket = client_socket
         self.user_manager = user_manager
 
+    def send_message_to_server(self, message):
+        try:
+            self.client_socket.send(message.encode('utf-8'))
+        except Exception as e:
+            print(f"Error sending message to server for {self.username}: {e}")
+
     def handle_client_messages(self):
         try:
+            address = self.client_socket.getpeername()
+            print(f"{self.username} connected from {address}")
+
             while True:
                 data = self.client_socket.recv(1024)
                 if not data:
@@ -321,9 +333,8 @@ class ClientHandler(QObject):
                 formatted_message = f"@{self.username}: {message}"
                 print(f"Formatted message: {formatted_message}")
 
-                if self.client_socket.fileno() != -1:
-                    # Emit the signal to notify the main thread about the received message
-                    self.message_received.emit(formatted_message)
+                # Send the message to the server for broadcasting
+                self.send_message_to_server(formatted_message)
 
         except Exception as e:
             print(f"Error handling client messages for {self.username}: {e}")
