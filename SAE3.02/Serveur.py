@@ -3,6 +3,8 @@ import socket
 import threading
 import time
 import queue
+import mysql.connector
+from functools import partial
 from PyQt6.QtGui import QPalette, QColor, QLinearGradient
 from PyQt6.QtCore import QTimer, QObject, pyqtSignal, QThread
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QListWidget
@@ -19,6 +21,39 @@ class UserManager:
         self.kicked_users = {}
         self.banned_users = {}
         self.shutdown_requested = False
+
+        # Configuration de la connexion à la base de données MySQL
+        self.db_connection = mysql.connector.connect(
+            host="127.0.0.1",
+            user="serv302",
+            password="serv2024",
+            database="sae302"
+        )
+
+        self.create_messages_table()
+
+    def create_messages_table(self):
+        # Créer la table des messages si elle n'existe pas déjà
+        with self.db_connection.cursor() as cursor:
+            cursor.execute("""
+                            CREATE TABLE IF NOT EXISTS messages (
+                                id INT AUTO_INCREMENT PRIMARY KEY,
+                                username VARCHAR(255),
+                                address VARCHAR(255),
+                                message TEXT,
+                                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                            )
+                        """)
+
+    def add_message_to_db(self, username, address, message):
+        # Ajouter le message à la base de données
+        with self.db_connection.cursor() as cursor:
+            cursor.execute("""
+                   INSERT INTO messages (username, address, message) VALUES (%s, %s, %s)
+               """, (username, address, message))
+
+        # Valider la transaction
+        self.db_connection.commit()
 
     def add_user(self, username, address, client_socket):
         self.connected_users[username] = {'address': address, 'socket': client_socket}
@@ -141,7 +176,7 @@ class ServerThread(QThread):
             try:
                 while not self.user_manager.shutdown_requested:
                     client_socket, address = server_socket.accept()
-                    username = client_socket.recv(1024).decode('utf-8')
+                    username = client_socket.recv(1024).decode()
                     print(f"{username} connected from {address}")
                     self.user_manager.add_user(username, address, client_socket)
 
@@ -169,8 +204,10 @@ class ServerThread(QThread):
                 server_socket.close()
 
         def handle_message_received(self, message):
-            # Handle the received message, e.g., print it to the console
+            # Handle the received message, e.g., print it to the console and save to the database
             print(f"Message received: {message}")
+            username, _, user_message = message.partition(':')
+            self.user_manager.add_message_to_db(username.strip(), "", user_message.strip())
 
 class ServerGUI(QWidget):
     selected_user = None
@@ -194,7 +231,7 @@ class ServerGUI(QWidget):
         # Connect the signal from the ClientHandler to the update_messages method
         for user_data in self.user_manager.connected_users.values():
             user_handler = user_data['handler']
-            user_handler.message_received.connect(self.update_messages)
+            user_handler.message_received.connect(partial(self.update_messages, user_data['username']))
 
         self.user_list = QListWidget(self)
         self.refresh_user_list()
@@ -223,8 +260,8 @@ class ServerGUI(QWidget):
         self.timer.timeout.connect(self.refresh_user_list)
         self.timer.start(1000)  # Refresh every 1000 milliseconds (1 second)
 
-    def update_messages(self, message):
-        print(message)  # This is where you can update your UI with the received message
+    def update_messages(self, username, message):
+        print(message)
 
     def select_user(self, item):
         # Enregistrez l'utilisateur sélectionné dans la variable de classe
@@ -280,6 +317,7 @@ class ClientHandler(QObject):
                 message = data.decode('utf-8')
                 print(f"Received from {self.username}: {message}")
 
+                # Formatez le message avec le nom d'utilisateur
                 formatted_message = f"@{self.username}: {message}"
                 print(f"Formatted message: {formatted_message}")
 
