@@ -60,10 +60,11 @@ class ClientThread(QThread):
     def send_user_input(self):
         try:
             while True:
-                # Since this is a GUI application, get the message from the GUI
-                message = yield from get_gui_message()  # Replace this with the correct method
+                message = yield from get_gui_message()
                 if not message:
                     break
+                full_message = f"{self.username}: {message}"
+                # Envoyer le message au serveur pour la diffusion
                 self.client_socket.send(full_message.encode())
         except Exception as e:
             print(f"Error sending user input: {e}")

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, ajout mode asynchrone entre client et serveur">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, ajout adresse IP serv dans connexion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE3.02/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/Serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +51,7 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Client (1)">
+  <component name="RunManager" selected="Python.clienttttttt">
     <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -399,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703520628328</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="25/12/2023 : SAE302, ajout adresse IP serv dans connexion">
+      <created>1703521364491</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1703521364491</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -426,6 +434,7 @@
     <MESSAGE value="21/12/2023 : SAE302" />
     <MESSAGE value="25/12/2023 : SAE302, modification de quelques points" />
     <MESSAGE value="25/12/2023 : SAE302, ajout mode asynchrone entre client et serveur" />
-    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, ajout mode asynchrone entre client et serveur" />
+    <MESSAGE value="25/12/2023 : SAE302, ajout adresse IP serv dans connexion" />
+    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, ajout adresse IP serv dans connexion" />
   </component>
 </project>

@@ -40,6 +40,15 @@ class UserManager:
                 if target_username != sender_username and target_username not in self.kicked_users and target_username not in self.banned_users:
                     user_socket.send(message.encode('utf-8'))
 
+    # Ajoutez cette méthode à la classe UserManager
+    def broadcast_server_shutdown(self):
+        shutdown_message = "@ServerShutdown@"
+        self.broadcast_message(shutdown_message, sender_username="Server")
+        with self.lock:
+            for user_data in self.connected_users.values():
+                user_socket = user_data['socket']
+                user_socket.send(shutdown_message.encode('utf-8'))
+
     def create_messages_table(self):
         # Créer la table des messages si elle n'existe pas déjà
         with self.db_connection.cursor() as cursor:
@@ -85,18 +94,11 @@ class UserManager:
         self.broadcast_message("Server", kick_message)
         self.kicked_users[username] = time.time() + self.parse_duration(duration)
 
-        # Utilisez un dictionnaire pour stocker les informations sur l'utilisateur "kicked"
-        self.kicked_users[username] = time.time() + self.parse_duration(duration)
-        self.user_signal.user_updated.emit()
-
         # Lancer le minuteur dans un thread séparé pour ne pas bloquer le thread principal
         threading.Thread(target=self.kick_timer, args=(username,)).start()
 
         # Marquer l'utilisateur comme "kicked" pour la durée spécifiée
         self.kicked_users.add(username)
-        self.user_signal.user_updated.emit()
-        time.sleep(self.parse_duration(duration))
-        self.kicked_users.remove(username)
         self.user_signal.user_updated.emit()
 
     def kick_timer(self, username):
@@ -104,9 +106,6 @@ class UserManager:
         if username in self.kicked_users:
             del self.kicked_users[username]
             self.user_signal.user_updated.emit()
-
-        # Lancer le minuteur dans un thread séparé pour ne pas bloquer le thread principal
-        threading.Thread(target=kick_timer).start()
 
     def parse_duration(self, duration):
         unit = duration[-1].lower()
@@ -154,14 +153,6 @@ class ServerThread(QThread):
         def __init__(self, user_manager):
             super().__init__()
             self.user_manager = user_manager
-
-        def broadcast_server_shutdown(self):
-            shutdown_message = "Attention ! Arrêt du serveur !"
-            self.broadcast_message("Server", shutdown_message)
-            with self.lock:
-                for user_data in self.connected_users.values():
-                    user_socket = user_data['socket']
-                    user_socket.send(shutdown_message.encode('utf-8'))
 
         def run(self):
             host = "0.0.0.0"
@@ -328,6 +319,11 @@ class ClientHandler(QObject):
 
                 message = data.decode('utf-8')
                 print(f"Received from {self.username}: {message}")
+
+                # Check if the server shutdown message is received
+                if "@ServerShutdown@" in message:
+                    print("Server shutdown initiated. Closing client connection.")
+                    break
 
                 # Formatez le message avec le nom d'utilisateur
                 formatted_message = f"@{self.username}: {message}"
