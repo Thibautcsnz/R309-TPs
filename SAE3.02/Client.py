@@ -265,10 +265,31 @@ class LoginWindow(QWidget):
         layout.addWidget(self.login_button)
         layout.addWidget(self.back_button)
 
+        # Champ de saisie pour l'adresse IP
+        self.label_ip = QLabel('Adresse IP du serveur:')
+        self.ip_input = QLineEdit(self)
+        layout.addWidget(self.label_ip)
+        layout.addWidget(self.ip_input)
+
+        # Bouton pour définir l'adresse IP
+        set_ip_button = QPushButton('Définir l\'adresse IP du serveur', self)
+        layout.addWidget(set_ip_button)
+
+        # Connectez le signal clicked du bouton à la méthode set_server_ip
+        set_ip_button.clicked.connect(self.set_server_ip)
+
         self.login_button.clicked.connect(self.on_login)
         self.back_button.clicked.connect(self.on_back)
 
         self.setLayout(layout)
+
+    def set_server_ip(self):
+        new_ip = self.ip_input.text()
+        if new_ip:
+            self.parent.set_server_ip(new_ip)
+            print(f"Adresse IP du serveur définie sur {new_ip}")
+        else:
+            print("Veuillez entrer une adresse IP valide.")
 
     def on_login(self):
         username = self.username_input.text()
@@ -318,14 +339,17 @@ class ChatClient(QMainWindow):
         # Connectez le signal currentChanged pour détecter les changements de page
         self.stacked_widget.currentChanged.connect(self.page_changed)
 
-        self.login_window = LoginWindow(self, self.user_manager, host, port, room)
-        self.login_window.login_successful.connect(self.handle_login_successful)
-        self.login_window.login_failed.connect(self.handle_login_failed)
-
         # Ajoutez ces lignes pour définir les attributs host, port, et room
         self.host = "127.0.0.1"
         self.port = 9000
         self.room = "Général"
+
+        self.login_window = LoginWindow(self, self.user_manager, self.host, self.port, self.room)
+        self.login_window.login_successful.connect(self.handle_login_successful)
+        self.login_window.login_failed.connect(self.handle_login_failed)
+
+    def set_server_ip(self, new_ip):
+        self.host = new_ip
 
     def show_registration_window(self):
         self.registration_window = RegistrationWindow(self, self.user_manager)
