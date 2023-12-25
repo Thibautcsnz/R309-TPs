@@ -146,6 +146,13 @@ class RoomWindow(QWidget):
         # Connectez le signal clicked du bouton de déconnexion à la méthode logout
         logout_button.clicked.connect(self.logout)
 
+        # Connectez le signal clicked du bouton d'envoi à la fonction clear_message_input
+        send_button.clicked.connect(self.clear_message_input)
+
+    def clear_message_input(self):
+        # Effacez le contenu de la zone de texte d'entrée
+        self.input_edit.clear()
+
     def logout(self):
         # Émettez le signal de déconnexion
         self.logout_requested.emit()
@@ -351,6 +358,7 @@ class ChatClient(QMainWindow):
 
     def set_server_ip(self, new_ip):
         self.host = new_ip
+        self.dbhost = new_ip
 
     def show_registration_window(self):
         self.registration_window = RegistrationWindow(self, self.user_manager)
@@ -382,6 +390,8 @@ class ChatClient(QMainWindow):
 
             # Comparer le mot de passe entré avec celui enregistré
             if entered_hashed_password == stored_password:
+                # Utiliser l'adresse IP spécifiée par l'utilisateur
+                db_host = self.login_window.ip_input.text()
                 client_thread = ClientThread(self.host, self.port, username, "", self.room)
                 client_thread.start()
                 self.set_client_thread(client_thread)
@@ -494,9 +504,9 @@ class UserManager:
             database="sae302"
         )
         if self.connection.is_connected():
-            print("Connected to the database")
+            print(f"Connexion à la base de donnée en {host}")
         else:
-            print("Failed to connect to the database")
+            print("Erreur de connexion à la base de donnée")
 
         self.cursor = self.connection.cursor()
 

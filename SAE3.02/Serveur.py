@@ -42,7 +42,7 @@ class UserManager:
 
     # Ajoutez cette méthode à la classe UserManager
     def broadcast_server_shutdown(self):
-        shutdown_message = "@ServerShutdown@"
+        shutdown_message = "Attention le serveur va s'arrêter !"
         self.broadcast_message(shutdown_message, sender_username="Server")
         with self.lock:
             for user_data in self.connected_users.values():
@@ -90,15 +90,14 @@ class UserManager:
         return None
 
     def kick_user(self, username, duration):
-        kick_message = f"Kicked {username} for {duration}"
-        self.broadcast_message("Server", kick_message)
+        kick_message = f"Server: Kicked {username} for {duration}"
+        self.broadcast_message(kick_message, sender_username="Server")
         self.kicked_users[username] = time.time() + self.parse_duration(duration)
 
         # Lancer le minuteur dans un thread séparé pour ne pas bloquer le thread principal
         threading.Thread(target=self.kick_timer, args=(username,)).start()
 
         # Marquer l'utilisateur comme "kicked" pour la durée spécifiée
-        self.kicked_users.add(username)
         self.user_signal.user_updated.emit()
 
     def kick_timer(self, username):
@@ -123,12 +122,11 @@ class UserManager:
         return username in self.kicked_users
 
     def ban_user(self, username):
-        ban_message = f"Banned {username}"
-        self.broadcast_message("Server", ban_message)
+        ban_message = f"Server: Banned {username}"
+        self.broadcast_message(ban_message, sender_username="Server")
         self.banned_users[username] = True
 
         # Marquer l'utilisateur comme "banned"
-        self.banned_users.add(username)
         self.user_signal.user_updated.emit()
 
     def is_banned(self, username):
@@ -153,6 +151,47 @@ class ServerThread(QThread):
         def __init__(self, user_manager):
             super().__init__()
             self.user_manager = user_manager
+
+        def handle_client_messages(self, client_socket, username):
+            try:
+                address = client_socket.getpeername()
+                print(f"{username} connected from {address}")
+
+                while True:
+                    data = client_socket.recv(1024)
+                    if not data:
+                        break
+
+                    message = data.decode('utf-8')
+                    print(f"Received from {username}: {message}")
+
+                    # Check if the server shutdown message is received
+                    if "@ServerShutdown@" in message:
+                        print("Server shutdown initiated. Closing client connection.")
+                        break
+
+                    # Format the message with the username
+                    formatted_message = f"@{username}: {message}"
+                    print(f"Formatted message: {formatted_message}")
+
+                    # Add the message to the database
+                    self.user_manager.add_message_to_db(username, "", message)
+
+                    # Emit the signal for GUI update
+                    self.message_received.emit(formatted_message)
+
+                    # Broadcast the message to all connected clients
+                    self.user_manager.broadcast_message(formatted_message, sender_username=username)
+
+            except Exception as e:
+                print(f"Error handling client messages for {username}: {e}")
+            finally:
+                if client_socket.fileno() != -1:
+                    client_socket.close()
+
+                self.user_manager.remove_user(username)
+                print(f"{username} disconnected.")
+                self.user_manager.user_signal.user_updated.emit()
 
         def run(self):
             host = "0.0.0.0"
@@ -325,12 +364,18 @@ class ClientHandler(QObject):
                     print("Server shutdown initiated. Closing client connection.")
                     break
 
-                # Formatez le message avec le nom d'utilisateur
+                # Format the message with the username
                 formatted_message = f"@{self.username}: {message}"
                 print(f"Formatted message: {formatted_message}")
 
+                # Call directly to add the message to the database
+                self.user_manager.add_message_to_db(self.username, "", message)
+
                 # Send the message to the server for broadcasting
                 self.send_message_to_server(formatted_message)
+
+                # Broadcast the message to all connected clients
+                self.user_manager.broadcast_message(formatted_message, sender_username=self.username)
 
         except Exception as e:
             print(f"Error handling client messages for {self.username}: {e}")
@@ -350,12 +395,12 @@ class ClientHandler(QObject):
             while True:
                 # Vérifier si l'utilisateur est kické ou banni
                 if self.user_manager.is_kicked(self.username):
-                    kick_message = "You have been kicked. Please try again later."
+                    kick_message = "Vous avez été Kické, veuillez réessayer plus tard."
                     self.client_socket.send(kick_message.encode())
                     break
 
                 if self.user_manager.is_banned(self.username):
-                    ban_message = "You have been banned from the server."
+                    ban_message = "Vous avez été banni du serveur."
                     self.client_socket.send(ban_message.encode())
                     break
 
