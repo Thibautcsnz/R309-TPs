@@ -14,7 +14,7 @@ class AuthDialog(QDialog):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Authentification")
+        self.setWindowTitle("Authentification du serveur")
         self.setGeometry(300, 300, 300, 150)
 
         layout = QVBoxLayout()

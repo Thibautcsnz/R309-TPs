@@ -273,7 +273,7 @@ class LoginWindow(QWidget):
         layout.addWidget(self.login_button)
         layout.addWidget(self.back_button)
 
-        # Champ de saisie pour l'adresse IP
+        # Nouveau champ pour l'adresse IP
         self.label_ip = QLabel('Adresse IP du serveur:')
         self.ip_input = QLineEdit(self)
         layout.addWidget(self.label_ip)
@@ -302,6 +302,10 @@ class LoginWindow(QWidget):
     def on_login(self):
         username = self.username_input.text()
         password = self.password_input.text()
+        db_host = self.ip_input.text()
+
+        # Définir l'adresse IP de la base de données dans UserManager
+        self.user_manager.set_db_host(db_host)
 
         # Récupérer le mot de passe hashé stocké dans la base de données
         stored_password = self.user_manager.get_user_password(username)
@@ -332,6 +336,11 @@ class ChatClient(QMainWindow):
         self.stacked_widget.addWidget(self.home_page)
         self.setCentralWidget(self.stacked_widget)
 
+        # Ajoutez ces lignes pour définir les attributs host, port, et room
+        self.host = host
+        self.port = 9000
+        self.room = "Général"
+
         # Initialiser le gestionnaire d'utilisateurs
         self.user_manager = UserManager()
 
@@ -346,11 +355,6 @@ class ChatClient(QMainWindow):
 
         # Connectez le signal currentChanged pour détecter les changements de page
         self.stacked_widget.currentChanged.connect(self.page_changed)
-
-        # Ajoutez ces lignes pour définir les attributs host, port, et room
-        self.host = "127.0.0.1"
-        self.port = 9000
-        self.room = "Général"
 
         self.login_window = LoginWindow(self, self.user_manager, self.host, self.port, self.room)
         self.login_window.login_successful.connect(self.handle_login_successful)
@@ -496,31 +500,41 @@ class HomePage(QWidget):
 
 class UserManager:
     def __init__(self):
-        # Établir une connexion à la base de données
+
+        self.connection = None  # Gardez la connexion comme None pour le moment
+        self.cursor = None
+
+    def set_db_host(self, host):
+        # Cette méthode doit être appelée après que l'utilisateur a spécifié l'adresse IP
+        # Établir la connexion à la base de données avec l'adresse IP fournie
         self.connection = mysql.connector.connect(
-            host="127.0.0.1",
-            user="serv302",
-            password="serv2024",
-            database="sae302"
-        )
+                host=host,
+                user="serv302",
+                password="serv2024",
+                database="sae302"
+            )
+
         if self.connection.is_connected():
             print(f"Connexion à la base de données en {host}")
+            self.cursor = self.connection.cursor()
+            self.create_table_if_not_exists()
         else:
             print("Erreur de connexion à la base de données")
 
         self.cursor = self.connection.cursor()
 
-        # Créer la table si elle n'existe pas
-        self.cursor.execute("""
-            CREATE TABLE IF NOT EXISTS user (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            alias VARCHAR(255) DEFAULT 'DefaultAlias',
-            status ENUM('connected', 'disconnected', 'absent') DEFAULT 'disconnected'
-        )
-    """)
-        self.connection.commit()
+    def create_table_if_not_exists(self):
+            # Créer la table si elle n'existe pas
+            self.cursor.execute("""
+                CREATE TABLE IF NOT EXISTS user (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(255) NOT NULL,
+                password VARCHAR(255) NOT NULL,
+                alias VARCHAR(255) DEFAULT 'DefaultAlias',
+                status ENUM('connected', 'disconnected', 'absent') DEFAULT 'disconnected'
+            )
+        """)
+            self.connection.commit()
 
     def get_user_password(self, username):
         # Récupérer le mot de passe de l'utilisateur depuis la base de données

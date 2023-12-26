@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, ajout ban users et BDD">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, modif rapide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SAE3.02/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE3.02/Serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +51,7 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clienttttttt">
+  <component name="RunManager" selected="Python.Client (1)">
     <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,8 +159,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.clienttttttt" />
         <item itemvalue="Python.Client (1)" />
+        <item itemvalue="Python.clienttttttt" />
         <item itemvalue="Python.Serveur (1)" />
         <item itemvalue="Python.clientestencore" />
         <item itemvalue="Python.testclient" />
@@ -434,7 +435,21 @@
       <option name="project" value="LOCAL" />
       <updated>1703590879854</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="25/12/2023 : SAE302, authentification côté serveur">
+      <created>1703596857956</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1703596857956</updated>
+    </task>
+    <task id="LOCAL-00039" summary="25/12/2023 : SAE302, modif rapide">
+      <created>1703597023530</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1703597023530</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,6 +480,8 @@
     <MESSAGE value="25/12/2023 : SAE302, ajout serveur shutdown" />
     <MESSAGE value="25/12/2023 : SAE302, ajout service asynchrone entre clients" />
     <MESSAGE value="25/12/2023 : SAE302, ajout ban users et BDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, ajout ban users et BDD" />
+    <MESSAGE value="25/12/2023 : SAE302, authentification côté serveur" />
+    <MESSAGE value="25/12/2023 : SAE302, modif rapide" />
+    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, modif rapide" />
   </component>
 </project>
