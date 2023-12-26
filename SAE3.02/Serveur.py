@@ -32,6 +32,8 @@ class UserManager:
 
         self.create_messages_table()
 
+        self.create_banned_users_table()
+
     def broadcast_message(self, message, sender_username):
         with self.lock:
             for user_data in self.connected_users.values():
@@ -71,6 +73,16 @@ class UserManager:
 
         # Valider la transaction
         self.db_connection.commit()
+
+    def create_banned_users_table(self):
+        with self.db_connection.cursor() as cursor:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS banned_users (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    username VARCHAR(255) UNIQUE,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            """)
 
     def add_user(self, username, address, client_socket):
         self.connected_users[username] = {'address': address, 'socket': client_socket}
@@ -126,8 +138,20 @@ class UserManager:
         self.broadcast_message(ban_message, sender_username="Server")
         self.banned_users[username] = True
 
-        # Marquer l'utilisateur comme "banned"
+        # Ajoutez l'utilisateur banni à la table des utilisateurs bannis
+        self.add_banned_user_to_db(username)
+
+        # Marquer l'utilisateur comme "banni"
         self.user_signal.user_updated.emit()
+
+    # Ajoutez cette méthode à la classe UserManager pour ajouter l'utilisateur banni à la base de données
+    def add_banned_user_to_db(self, username):
+        with self.db_connection.cursor() as cursor:
+            cursor.execute("""
+                INSERT INTO banned_users (username) VALUES (%s)
+            """, (username,))
+        # Valider la transaction
+        self.db_connection.commit()
 
     def is_banned(self, username):
         return username in self.banned_users
