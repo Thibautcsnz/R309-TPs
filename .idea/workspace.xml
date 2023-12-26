@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, modif rapide">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, modif rapide et côté client ajout adresse IP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE3.02/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE3.02/Serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Serveur.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +49,28 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Client (1)">
+  <component name="RunManager" selected="Python.CLIENTEST">
+    <configuration name="CLIENTEST" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="R309-Tps" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/CLIENTEST.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,34 +155,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="testclient" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="R309-Tps" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SAE3.02" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SAE3.02/testclient.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.CLIENTEST" />
+        <item itemvalue="Python.Serveur (1)" />
         <item itemvalue="Python.Client (1)" />
         <item itemvalue="Python.clienttttttt" />
-        <item itemvalue="Python.Serveur (1)" />
         <item itemvalue="Python.clientestencore" />
-        <item itemvalue="Python.testclient" />
       </list>
     </recent_temporary>
   </component>
@@ -449,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703597023530</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="25/12/2023 : SAE302, modif rapide et côté client ajout adresse IP">
+      <created>1703598904969</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1703598904969</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -482,6 +487,7 @@
     <MESSAGE value="25/12/2023 : SAE302, ajout ban users et BDD" />
     <MESSAGE value="25/12/2023 : SAE302, authentification côté serveur" />
     <MESSAGE value="25/12/2023 : SAE302, modif rapide" />
-    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, modif rapide" />
+    <MESSAGE value="25/12/2023 : SAE302, modif rapide et côté client ajout adresse IP" />
+    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, modif rapide et côté client ajout adresse IP" />
   </component>
 </project>

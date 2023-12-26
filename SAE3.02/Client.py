@@ -1,5 +1,5 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QDialog, QStackedWidget, QListWidget, QListWidgetItem, QMainWindow, QTextEdit, QComboBox
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QDialog, QStackedWidget, QListWidget, QInputDialog, QListWidgetItem, QMainWindow, QTextEdit, QComboBox
 from PyQt6.QtCore import Qt, pyqtSignal, QThread
 from PyQt6.QtGui import QTextCursor, QPalette, QColor, QLinearGradient
 import hashlib
@@ -273,19 +273,6 @@ class LoginWindow(QWidget):
         layout.addWidget(self.login_button)
         layout.addWidget(self.back_button)
 
-        # Nouveau champ pour l'adresse IP
-        self.label_ip = QLabel('Adresse IP du serveur:')
-        self.ip_input = QLineEdit(self)
-        layout.addWidget(self.label_ip)
-        layout.addWidget(self.ip_input)
-
-        # Bouton pour définir l'adresse IP
-        set_ip_button = QPushButton('Définir l\'adresse IP du serveur', self)
-        layout.addWidget(set_ip_button)
-
-        # Connectez le signal clicked du bouton à la méthode set_server_ip
-        set_ip_button.clicked.connect(self.set_server_ip)
-
         self.login_button.clicked.connect(self.on_login)
         self.back_button.clicked.connect(self.on_back)
 
@@ -302,10 +289,6 @@ class LoginWindow(QWidget):
     def on_login(self):
         username = self.username_input.text()
         password = self.password_input.text()
-        db_host = self.ip_input.text()
-
-        # Définir l'adresse IP de la base de données dans UserManager
-        self.user_manager.set_db_host(db_host)
 
         # Récupérer le mot de passe hashé stocké dans la base de données
         stored_password = self.user_manager.get_user_password(username)
@@ -359,6 +342,10 @@ class ChatClient(QMainWindow):
         self.login_window = LoginWindow(self, self.user_manager, self.host, self.port, self.room)
         self.login_window.login_successful.connect(self.handle_login_successful)
         self.login_window.login_failed.connect(self.handle_login_failed)
+        self.login_window.set_server_ip = lambda new_ip: self.set_server_ip(new_ip)
+
+        # Connectez le signal set_ip_requested de la classe Homepage à la méthode set_server_ip
+        self.home_page.set_ip_requested.connect(self.user_manager.set_db_host)
 
     def set_server_ip(self, new_ip):
         self.host = new_ip
@@ -395,7 +382,6 @@ class ChatClient(QMainWindow):
             # Comparer le mot de passe entré avec celui enregistré
             if entered_hashed_password == stored_password:
                 # Utiliser l'adresse IP spécifiée par l'utilisateur
-                db_host = self.login_window.ip_input.text()
                 client_thread = ClientThread(self.host, self.port, username, "", self.room)
                 client_thread.start()
                 self.set_client_thread(client_thread)
@@ -410,6 +396,7 @@ class ChatClient(QMainWindow):
 
     def show_home_page(self):
         self.stacked_widget.setCurrentWidget(self.home_page)
+        self.stacked_widget.addWidget(self.login_window)  # Add login window to the stacked widget
 
     def show_room_window(self, username, channel="Général"):
         self.room_window = RoomWindow(username, self.client_thread, self, self.user_manager)
@@ -467,6 +454,7 @@ class ChatClient(QMainWindow):
 class HomePage(QWidget):
     registration_requested = pyqtSignal()
     login_requested = pyqtSignal()
+    set_ip_requested = pyqtSignal(str)
 
     def __init__(self, parent):
         super().__init__()
@@ -484,6 +472,21 @@ class HomePage(QWidget):
         self.register_button = QPushButton('Inscription', self)
         self.register_button.setStyleSheet("background-color: #FFB900; color: white;")
 
+        # Champ de texte pour l'adresse IP
+        self.label_ip = QLabel('Adresse IP du serveur:')
+        self.ip_input = QLineEdit(self)
+        layout.addWidget(self.label_ip)
+        layout.addWidget(self.ip_input)
+
+        # Bouton pour définir l'adresse IP
+        set_ip_button = QPushButton('Définir l\'adresse IP du serveur', self)
+        layout.addWidget(set_ip_button)
+        # Connectez le signal clicked du bouton à la méthode set_db_host de UserManager
+        set_ip_button.clicked.connect(self.set_db_host)
+
+        # Ajoutez le bouton après l'adresse IP
+        layout.addWidget(set_ip_button)
+
         layout.addWidget(self.login_button)
         layout.addWidget(self.register_button)
 
@@ -492,15 +495,37 @@ class HomePage(QWidget):
 
         self.setLayout(layout)
 
+    def set_db_host(self):
+        new_ip = self.ip_input.text()
+        if new_ip:
+            # Émettez le signal set_ip_requested pour informer d'autres parties de l'application
+            self.set_ip_requested.emit(new_ip)
+            print(f"Adresse IP du serveur définie sur {new_ip}")
+        else:
+            print("Veuillez entrer une adresse IP valide.")
+
+    def set_server_ip(self):
+        new_ip, ok = QInputDialog.getText(self, 'Définir l\'adresse IP', 'Entrez l\'adresse IP du serveur:')
+        if ok:
+            # Faites ce que vous devez faire avec la nouvelle adresse IP (par exemple, l'afficher)
+            print(f"Adresse IP du serveur définie sur {new_ip}")
+
     def on_login_clicked(self):
         self.login_requested.emit()
 
     def on_register_clicked(self):
         self.registration_requested.emit()
 
+    def set_server_ip(self):
+        new_ip = self.ip_input.text()
+        if new_ip:
+            self.set_ip_requested.emit(new_ip)
+            print(f"Adresse IP du serveur définie sur {new_ip}")
+        else:
+            print("Veuillez entrer une adresse IP valide.")
+
 class UserManager:
     def __init__(self):
-
         self.connection = None  # Gardez la connexion comme None pour le moment
         self.cursor = None
 
