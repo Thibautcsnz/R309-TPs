@@ -504,9 +504,9 @@ class UserManager:
             database="sae302"
         )
         if self.connection.is_connected():
-            print(f"Connexion à la base de donnée en {host}")
+            print(f"Connexion à la base de données en {host}")
         else:
-            print("Erreur de connexion à la base de donnée")
+            print("Erreur de connexion à la base de données")
 
         self.cursor = self.connection.cursor()
 

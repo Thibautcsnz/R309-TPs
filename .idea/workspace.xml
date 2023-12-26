@@ -50,7 +50,7 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Serveur (1)">
+  <component name="RunManager" selected="Python.clienttttttt">
     <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,9 +158,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.clienttttttt" />
         <item itemvalue="Python.Client (1)" />
         <item itemvalue="Python.Serveur (1)" />
-        <item itemvalue="Python.clienttttttt" />
         <item itemvalue="Python.clientestencore" />
         <item itemvalue="Python.testclient" />
       </list>
