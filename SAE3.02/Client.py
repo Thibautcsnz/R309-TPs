@@ -35,7 +35,7 @@ class ClientThread(QThread):
             # Receive acknowledgement from the server (you can modify server code accordingly)
             ack = self.client_socket.recv(1024).decode()
             if ack != "ACK_USERNAME":
-                print("Error: Server did not acknowledge the username.")
+                print("Erreur : Le serveur n'a pas reconnu le nom d'utilisateur.")
                 return
 
             # Send password and room
@@ -52,7 +52,7 @@ class ClientThread(QThread):
                     break
                 self.message_received.emit(message)
         except Exception as e:
-            print(f"Error in ClientThread: {e}")
+            print(f"Erreur dans le thread client : {e}")
         finally:
             if self.client_socket:
                 self.client_socket.close()
@@ -67,12 +67,12 @@ class ClientThread(QThread):
                 # Envoyer le message au serveur pour la diffusion
                 self.client_socket.send(full_message.encode())
         except Exception as e:
-            print(f"Error sending user input: {e}")
+            print(f"Erreur lors de l'envoi des données de l'utilisateur : {e}")
 
     def send_message(self, message):
         if self.client_socket:
             self.client_socket.send(message.encode())
-            print(f"Sent message: {message}")
+            print(f"Message envoyé: {message}")
 
 class RoomWindow(QWidget):
     message_received = pyqtSignal(str)

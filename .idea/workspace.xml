@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, ajout serveur shutdown">
+    <list default="true" id="8760ab0e-3b30-433f-8ddb-b9977affbe36" name="Changes" comment="25/12/2023 : SAE302, ajout service asynchrone entre clients">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE3.02/Client.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SAE3.02/Serveur.py" beforeDir="false" afterPath="$PROJECT_DIR$/SAE3.02/Serveur.py" afterDir="false" />
@@ -51,7 +51,7 @@
       <recent name="C:\Users\thiba\Documents\R309-Tps\TPs Exceptions\TP socket\Exercice1" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clienttttttt">
+  <component name="RunManager" selected="Python.Serveur (1)">
     <configuration name="Client (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="R309-Tps" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,9 +159,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.clienttttttt" />
-        <item itemvalue="Python.Client (1)" />
         <item itemvalue="Python.Serveur (1)" />
+        <item itemvalue="Python.Client (1)" />
+        <item itemvalue="Python.clienttttttt" />
         <item itemvalue="Python.clientestencore" />
         <item itemvalue="Python.testclient" />
       </list>
@@ -414,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703526523911</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="25/12/2023 : SAE302, ajout service asynchrone entre clients">
+      <created>1703542911531</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1703542911531</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,6 +450,7 @@
     <MESSAGE value="25/12/2023 : SAE302, ajout mode asynchrone entre client et serveur" />
     <MESSAGE value="25/12/2023 : SAE302, ajout adresse IP serv dans connexion" />
     <MESSAGE value="25/12/2023 : SAE302, ajout serveur shutdown" />
-    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, ajout serveur shutdown" />
+    <MESSAGE value="25/12/2023 : SAE302, ajout service asynchrone entre clients" />
+    <option name="LAST_COMMIT_MESSAGE" value="25/12/2023 : SAE302, ajout service asynchrone entre clients" />
   </component>
 </project>

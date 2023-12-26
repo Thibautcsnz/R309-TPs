@@ -90,7 +90,7 @@ class UserManager:
         return None
 
     def kick_user(self, username, duration):
-        kick_message = f"Server: Kicked {username} for {duration}"
+        kick_message = f"Server : {username} a été kick pendant {duration}"
         self.broadcast_message(kick_message, sender_username="Server")
         self.kicked_users[username] = time.time() + self.parse_duration(duration)
 
@@ -122,7 +122,7 @@ class UserManager:
         return username in self.kicked_users
 
     def ban_user(self, username):
-        ban_message = f"Server: Banned {username}"
+        ban_message = f"Server: {username} a été banni"
         self.broadcast_message(ban_message, sender_username="Server")
         self.banned_users[username] = True
 
@@ -155,7 +155,7 @@ class ServerThread(QThread):
         def handle_client_messages(self, client_socket, username):
             try:
                 address = client_socket.getpeername()
-                print(f"{username} connected from {address}")
+                print(f"{username} connecté à l'adresse {address}")
 
                 while True:
                     data = client_socket.recv(1024)
@@ -163,16 +163,16 @@ class ServerThread(QThread):
                         break
 
                     message = data.decode('utf-8')
-                    print(f"Received from {username}: {message}")
+                    print(f"Reçu de {username}: {message}")
 
                     # Check if the server shutdown message is received
                     if "@ServerShutdown@" in message:
-                        print("Server shutdown initiated. Closing client connection.")
+                        print("Arrêt du serveur initié. Fermeture de la connexion client.")
                         break
 
                     # Format the message with the username
                     formatted_message = f"@{username}: {message}"
-                    print(f"Formatted message: {formatted_message}")
+                    print(f"Meessage formaté: {formatted_message}")
 
                     # Add the message to the database
                     self.user_manager.add_message_to_db(username, "", message)
@@ -184,13 +184,13 @@ class ServerThread(QThread):
                     self.user_manager.broadcast_message(formatted_message, sender_username=username)
 
             except Exception as e:
-                print(f"Error handling client messages for {username}: {e}")
+                print(f"Gestion des erreurs dans les messages du client pour {username}: {e}")
             finally:
                 if client_socket.fileno() != -1:
                     client_socket.close()
 
                 self.user_manager.remove_user(username)
-                print(f"{username} disconnected.")
+                print(f"{username} déconnecté.")
                 self.user_manager.user_signal.user_updated.emit()
 
         def run(self):
@@ -207,7 +207,7 @@ class ServerThread(QThread):
                 while not self.user_manager.shutdown_requested:
                     client_socket, address = server_socket.accept()
                     username = client_socket.recv(1024).decode()
-                    print(f"{username} connected from {address}")
+                    print(f"{username} connecté à l'adresse {address}")
                     self.user_manager.add_user(username, address, client_socket)
 
                     # Send the acknowledgment after adding the user
@@ -229,13 +229,13 @@ class ServerThread(QThread):
                         thread.start()
 
             except Exception as e:
-                print(f"Server error: {e}")
+                print(f"Erreur du serveur: {e}")
             finally:
                 server_socket.close()
 
         def handle_message_received(self, message):
             # Handle the received message, e.g., print it to the console and save to the database
-            print(f"Message received: {message}")
+            print(f"Message reçu : {message}")
             username, _, user_message = message.partition(':')
             self.user_manager.add_message_to_db(username.strip(), "", user_message.strip())
 
@@ -252,9 +252,9 @@ class ServerGUI(QWidget):
         self.setWindowTitle("Administration")
         self.setGeometry(300, 300, 400, 200)
         # Déclarez les boutons comme des attributs de classe
-        self.kick_button = QPushButton("Kick Selected User", self)
-        self.ban_button = QPushButton("Ban Selected User", self)
-        self.kill_button = QPushButton("Kill Server", self)
+        self.kick_button = QPushButton("Kicker l'utilisateur sélectionné", self)
+        self.ban_button = QPushButton("Bannir l'utilisateur sélectionné", self)
+        self.kill_button = QPushButton("Kill le serveur", self)
 
         self.init_ui()
 
@@ -344,12 +344,12 @@ class ClientHandler(QObject):
         try:
             self.client_socket.send(message.encode('utf-8'))
         except Exception as e:
-            print(f"Error sending message to server for {self.username}: {e}")
+            print(f"Erreur lors de l'envoi d'un message au serveur pour {self.username}: {e}")
 
     def handle_client_messages(self):
         try:
             address = self.client_socket.getpeername()
-            print(f"{self.username} connected from {address}")
+            print(f"{self.username} connecté à l'adresse {address}")
 
             while True:
                 data = self.client_socket.recv(1024)
@@ -357,16 +357,16 @@ class ClientHandler(QObject):
                     break
 
                 message = data.decode('utf-8')
-                print(f"Received from {self.username}: {message}")
+                print(f"Reçu de {self.username}: {message}")
 
                 # Check if the server shutdown message is received
                 if "@ServerShutdown@" in message:
-                    print("Server shutdown initiated. Closing client connection.")
+                    print("Arrêt du serveur initié. Fermeture de la connexion client.")
                     break
 
                 # Format the message with the username
                 formatted_message = f"@{self.username}: {message}"
-                print(f"Formatted message: {formatted_message}")
+                print(f"Message formaté: {formatted_message}")
 
                 # Call directly to add the message to the database
                 self.user_manager.add_message_to_db(self.username, "", message)
@@ -378,13 +378,13 @@ class ClientHandler(QObject):
                 self.user_manager.broadcast_message(formatted_message, sender_username=self.username)
 
         except Exception as e:
-            print(f"Error handling client messages for {self.username}: {e}")
+            print(f"Gestion des erreurs dans les messages du client pour {self.username}: {e}")
         finally:
             if self.client_socket.fileno() != -1:
                 self.client_socket.close()
 
             self.user_manager.remove_user(self.username)
-            print(f"{self.username} disconnected.")
+            print(f"{self.username} déconnecté.")
             self.user_manager.user_signal.user_updated.emit()
 
     def run(self):
