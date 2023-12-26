@@ -7,7 +7,50 @@ import mysql.connector
 from functools import partial
 from PyQt6.QtGui import QPalette, QColor, QLinearGradient
 from PyQt6.QtCore import QTimer, QObject, pyqtSignal, QThread
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QListWidget
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QListWidget, QDialog, QLabel, QLineEdit, QDialog
+
+
+class AuthDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Authentification")
+        self.setGeometry(300, 300, 300, 150)
+
+        layout = QVBoxLayout()
+
+        self.username_label = QLabel("Nom d'utilisateur:")
+        self.username_input = QLineEdit(self)
+        self.password_label = QLabel("Mot de passe:")
+        self.password_input = QLineEdit(self)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+
+        self.login_button = QPushButton("Connexion", self)
+        self.login_button.clicked.connect(self.authenticate)
+
+        layout.addWidget(self.username_label)
+        layout.addWidget(self.username_input)
+        layout.addWidget(self.password_label)
+        layout.addWidget(self.password_input)
+        layout.addWidget(self.login_button)
+
+        self.setLayout(layout)
+
+    def authenticate(self):
+        # Définir le nom d'utilisateur et le mot de passe à utiliser
+        correct_username = "admin"
+        correct_password = "serv2024!"
+
+        # Récupérer le nom d'utilisateur et le mot de passe saisis
+        entered_username = self.username_input.text()
+        entered_password = self.password_input.text()
+
+        # Vérifier si les informations d'authentification sont correctes
+        if entered_username == correct_username and entered_password == correct_password:
+            self.accept()  # Authentification réussie, fermer la fenêtre
+        else:
+            QMessageBox.warning(self, "Authentification échouée", "Nom d'utilisateur ou mot de passe incorrect.")
+
 
 class UserSignal(QObject):
     user_updated = pyqtSignal()
@@ -272,6 +315,7 @@ class ServerGUI(QWidget):
         super().__init__()
 
         self.user_manager = user_manager
+        self.authenticated = False  # Ajoutez cette ligne
 
         self.setWindowTitle("Administration")
         self.setGeometry(300, 300, 400, 200)
@@ -317,8 +361,24 @@ class ServerGUI(QWidget):
         self.timer.timeout.connect(self.refresh_user_list)
         self.timer.start(1000)  # Refresh every 1000 milliseconds (1 second)
 
+    def authenticate(self):
+        # Définir le nom d'utilisateur et le mot de passe à utiliser pour la fenêtre principale
+        correct_username = "admin"
+        correct_password = "serv2024!"
+
+        # Vérifier si l'utilisateur est authentifié avant de traiter les messages
+        if not self.authenticated:
+            # Ouvrir la fenêtre d'authentification
+            auth_dialog = AuthDialog()
+            if auth_dialog.exec() == QDialog.DialogCode.Accepted:
+                self.authenticated = True  # Mettez à jour la variable de classe ici
+            else:
+                sys.exit(0)  # Quitter si l'authentification échoue
+
     def update_messages(self, username, message):
-        print(message)
+        # Vérifier si l'utilisateur est authentifié avant de traiter les messages
+        if self.authenticated:
+            print(message)
 
     def select_user(self, item):
         # Enregistrez l'utilisateur sélectionné dans la variable de classe
@@ -338,23 +398,29 @@ class ServerGUI(QWidget):
             self.user_list.setCurrentItem(current_item)
 
     def kick_user(self):
-        selected_item = self.user_list.currentItem()
-        if selected_item is not None:
-            ServerGUI.selected_user = selected_item.text()
-            duration = "1h"  # Remplacez par la durée réelle que vous souhaitez définir
-            self.user_manager.kick_user(ServerGUI.selected_user, duration)
-            self.refresh_user_list()
-        else:
-            print("Aucun utilisateur sélectionné.")
+        # Vérifier si l'utilisateur est authentifié avant d'exécuter la commande
+        if self.authenticated:
+            selected_item = self.user_list.currentItem()
+            if selected_item is not None:
+                ServerGUI.selected_user = selected_item.text()
+                duration = "1h"  # Remplacez par la durée réelle que vous souhaitez définir
+                self.user_manager.kick_user(ServerGUI.selected_user, duration)
+                self.refresh_user_list()
+            else:
+                print("Aucun utilisateur sélectionné.")
 
     def ban_user(self):
-        selected_user = self.user_list.currentItem().text()
-        self.user_manager.ban_user(selected_user)
+        # Vérifier si l'utilisateur est authentifié avant d'exécuter la commande
+        if self.authenticated:
+            selected_user = self.user_list.currentItem().text()
+            self.user_manager.ban_user(selected_user)
 
     def kill_server(self):
-        self.user_manager.kill_server()
-        # Add any additional cleanup or shutdown logic here
-        sys.exit()
+        # Vérifier si l'utilisateur est authentifié avant d'exécuter la commande
+        if self.authenticated:
+            self.user_manager.kill_server()
+            # Add any additional cleanup or shutdown logic here
+            sys.exit()
 
 class ClientHandler(QObject):
     message_received = pyqtSignal(str)
@@ -441,6 +507,8 @@ class ClientHandler(QObject):
 
 def main():
     app = QApplication(sys.argv)
+
+    # Authentification réussie, créer le gestionnaire d'utilisateurs et démarrer le serveur
     user_signal = UserSignal()
     user_manager = UserManager(user_signal)
 
@@ -449,6 +517,10 @@ def main():
     server_thread.start()
 
     server_gui = ServerGUI(user_manager=user_manager)
+
+    # Appeler la méthode authenticate de la fenêtre principale une seule fois
+    server_gui.authenticate()
+
     server_gui.show()
 
     sys.exit(app.exec())
