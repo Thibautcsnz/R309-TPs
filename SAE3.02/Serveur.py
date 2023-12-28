@@ -530,7 +530,7 @@ class ClientHandler(QObject):
         except Exception as e:
             print(f"Erreur lors de l'envoi d'un message au serveur pour {self.username}: {e}")
 
-    # Fonction gèrant les messages reçus du client.
+    # Fonction gérant les messages reçus du client.
     def handle_client_messages(self):
         try:
             address = self.client_socket.getpeername()
